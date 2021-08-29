@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: base-prospect-front
+  namespace: base-prospect
+  labels:
+    app: base-prospect-front
+spec:
+  ports:
+  - name: http
+    port: 8082
+    targetPort: 80
+  selector:
+    app: base-prospect-front
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: base-prospect-front
+  namespace: base-prospect
+  labels:
+    app: base-prospect-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: base-prospect-front
+  template:
+    metadata:
+      labels:
+        app: base-prospect-front
+    spec:
+      containers:
+      - name: base-prospect-front
+        image: youchafiki/base-pp-front:latest
+        env:
+        - name: API_URL
+          value: "http://base-pp.dsira.bnpparibas.com"
+        ports:
+        - containerPort: 80
+
+        
