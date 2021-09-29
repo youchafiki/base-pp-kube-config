@@ -4,10 +4,15 @@ metadata:
   name: keycloak
   namespace: base-prospect
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
+  tls:
+  - hosts:
+    - keycloak.dsirairb.com
+    secretName: keycloak-secret
   rules:
-  - host: keycloak.dsira.bnpparibas.com
+  - host: keycloak.dsirairb.com
     http:
       paths:
         - path: /

@@ -4,10 +4,15 @@ metadata:
   name: base-pp
   namespace: base-prospect
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
+  tls:
+  - hosts:
+    - base-pp.dsirairb.com
+    secretName: base-pp-tls
   rules:
-  - host: base-pp.dsira.bnpparibas.com
+  - host: base-pp.dsirairb.com
     http:
       paths:
         - path: /

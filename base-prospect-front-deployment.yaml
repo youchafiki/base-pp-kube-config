@@ -36,7 +36,7 @@ spec:
         image: youchafiki/base-pp-front:latest
         env:
         - name: API_URL
-          value: "http://base-pp.dsira.bnpparibas.com"
+          value: "https://base-pp.dsirairb.com"
         ports:
         - containerPort: 80
 
